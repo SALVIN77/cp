@@ -1,0 +1,73 @@
+#include<stdio.h>
+#include<conio.h>
+struct list
+{
+int num;
+struct list *next;
+};
+typedef struct list node;
+void create(node*);
+void disp(node*);
+node* delend(node*);
+
+void main()
+{
+int item;
+node* st;
+clrscr();
+st=(node*)malloc(sizeof(node));
+create(st);
+printf("The linked list before deletion is:");
+disp(st);
+st=delbeg(st);
+printf("\nLinked list after deletion:");
+disp(st);
+getch();
+}
+
+
+void create(node*t)
+{
+int ch;
+printf("Enter the number:");
+scanf("%d",&t->num);
+printf("Do you want to continue?:");
+scanf("%d",&ch);
+if(ch==0)
+t->next=NULL;
+else
+{
+t->next=(node*)malloc(sizeof (node));
+create(t->next);
+}
+}
+
+void disp(node*t)
+{
+while(t!=NULL)
+{
+printf("%d ",t->num);
+t=t->next;
+}}
+
+
+node* delend(node*t)
+{
+{
+node*temp = t;
+if (t == NULL || t->next == NULL)
+{
+free(t);
+return NULL;
+}
+
+while (temp->next->next != NULL)
+{
+temp = temp->next;
+}
+
+free(temp->next);
+temp->next = NULL;
+return t;
+}
+}
